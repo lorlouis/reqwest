@@ -264,6 +264,10 @@ impl fmt::Display for Error {
             }
         };
 
+        if let Some(ref src) = self.inner.source {
+            write!(f, ": {src:?}")?;
+        }
+
         if let Some(url) = &self.inner.url {
             write!(f, " for url ({url})")?;
         }
